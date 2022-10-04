@@ -32,8 +32,8 @@ private static final DeferredRegistries<Item> ITEMS = DeferredRegistries.create(
 Then, register things to it:
 
 ```java
-public static final Item EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Settings()));
-public static final Item SIMPLE_ITEM = ITEMS.register("simple_item", new Item(new Item.Settings()));
+public static final DeferredObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item", () -> new Item(new Item.Settings()));
+public static final DeferredObject<Item> SIMPLE_ITEM = ITEMS.register("simple_item", new Item(new Item.Settings()));
 ```
 
 Finally, register the DeferredRegistries object when initializing your mod:
