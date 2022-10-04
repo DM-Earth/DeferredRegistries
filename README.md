@@ -9,15 +9,15 @@ This Minecraft mod provides a way to register things that are not available at t
 
 ### Setup
 
-```groovy
+```gradle
 repositories {
-	// [...]
-	maven { url 'https://jitpack.io' }
+ // [...]
+ maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-	// [...]
-	modImplementation "com.github.DM-Earth:DeferredRegistries:1.18-SNAPSHOT"
+ // [...]
+ modImplementation "com.github.DM-Earth:DeferredRegistries:1.18-SNAPSHOT"
 }
 ```
 
