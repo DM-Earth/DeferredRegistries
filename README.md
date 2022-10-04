@@ -10,6 +10,6 @@ repositories {
 
 dependencies {
 	// [...]
-	modImplementation "com.github.DM-Earth:DeferredRegistries:0.1"
+	modImplementation "com.github.DM-Earth:DeferredRegistries:1.18-SNAPSHOT"
 }
 ```
