@@ -1,29 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "deferred_registries",
   "version": "${version}",
 
-  "name": "modid",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "deferred_registries",
+  "description": "Register things in ease",
   "authors": [
     "DM Earth"
   ],
   "contact": {
-    "homepage": "https://github.com/DM-Earth"
+    "homepage": "https://github.com/DM-Earth/DeferredRegistries"
   },
 
   "license": "MIT",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/deferred_registries/icon.png",
 
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "com.dm.earth.modid.ModId"
-    ]
-  },
-  "mixins": [
-    "modid.mixins.json"
-  ],
+  "entrypoints": {},
 
   "depends": {
     "fabricloader": ">=0.14.6",
