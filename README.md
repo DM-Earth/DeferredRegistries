@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
  // [...]
- modImplementation "com.github.DM-Earth:DeferredRegistries:1.18-SNAPSHOT"
+ modImplementation include("com.github.DM-Earth:DeferredRegistries:1.18-SNAPSHOT")
 }
 ```
 
