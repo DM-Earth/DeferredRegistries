@@ -7,7 +7,21 @@
 
 This Minecraft mod provides a way to register things that are not available at the time of registration, which is similar to how Minecraft Forge's `DeferredRegister` works.
 
-## Usage
+### Setup
+
+```groovy
+repositories {
+	// [...]
+	maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+	// [...]
+	modImplementation "com.github.DM-Earth:DeferredRegistries:1.18-SNAPSHOT"
+}
+```
+
+### Usage
 
 First, create a `DeferredRegistries` object, here we use `Item` as example:
 
