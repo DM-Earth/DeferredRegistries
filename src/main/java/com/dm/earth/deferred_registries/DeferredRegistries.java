@@ -1,6 +1,7 @@
 package com.dm.earth.deferred_registries;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -40,5 +41,17 @@ public class DeferredRegistries<T> {
         for (DeferredObject<T> entry : entries) {
             entry.register(this.registry);
         }
+    }
+
+    public Collection<DeferredObject<T>> getObjects() {
+        return this.entries;
+    }
+
+    public Collection<T> getEntries() {
+        List<T> entriesL = new ArrayList<>();
+        for (DeferredObject<T> entry : this.entries) {
+            entriesL.add(entry.get());
+        }
+        return entriesL;
     }
 }

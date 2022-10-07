@@ -30,4 +30,5 @@ public class DeferredObject<T> {
     public void register(Registry<? super T> registry) {
         Registry.register(registry, this.id, this.entry);
     }
+    
 }
