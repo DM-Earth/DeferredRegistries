@@ -12,12 +12,18 @@ This Minecraft mod provides a way to register things that are not available at t
 ```gradle
 repositories {
  // [...]
- maven { url 'https://jitpack.io' }
+ maven {
+  name = "Modrinth"
+  url = "https://api.modrinth.com/maven"
+  content {
+   includeGroup "maven.modrinth"
+  }
+ }
 }
 
 dependencies {
  // [...]
- modImplementation include("com.github.DM-Earth:DeferredRegistries:1.18-SNAPSHOT")
+ modImplementation include("maven.modrinth:deferred-registries:<version_id>")
 }
 ```
 
