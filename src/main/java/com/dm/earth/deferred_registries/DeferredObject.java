@@ -30,5 +30,8 @@ public class DeferredObject<T> {
     public void register(Registry<? super T> registry) {
         Registry.register(registry, this.id, this.entry);
     }
-    
+
+    public static <T> DeferredObject<T> of(Identifier id, T entry) {
+        return new DeferredObject<T>(id, entry);
+    }
 }

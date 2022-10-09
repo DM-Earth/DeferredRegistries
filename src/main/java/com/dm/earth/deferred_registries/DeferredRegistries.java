@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Nullable;
 
 public class DeferredRegistries<T> {
     private final Registry<? super T> registry;
@@ -24,10 +25,7 @@ public class DeferredRegistries<T> {
     }
 
     public DeferredObject<T> register(String name, T entry) {
-        if (this.entries.contains(entry)) {
-            throw new IllegalArgumentException("Entry already exists: " + entry.toString());
-        }
-
+        if (this.getKey(entry) != null) throw new IllegalArgumentException("Entry already exists: " + entry.toString());
         DeferredObject<T> e = new DeferredObject<T>(new Identifier(this.modId, name), entry);
         this.entries.add(e);
         return e;
@@ -53,5 +51,26 @@ public class DeferredRegistries<T> {
             entriesL.add(entry.get());
         }
         return entriesL;
+    }
+
+    @Nullable
+    public Identifier getKey(T entry) {
+        for (DeferredObject<T> object : this.entries) {
+            if (object.get().equals(entry)) return object.getId();
+        }
+        return null;
+    }
+
+    @Nullable
+    public T get(Identifier id) {
+        for (DeferredObject<T> object : this.entries) {
+            if (object.getId().equals(id)) return object.get();
+        }
+        return null;
+    }
+
+    @Nullable
+    public Identifier get(T entry) {
+        return this.getKey(entry);
     }
 }
