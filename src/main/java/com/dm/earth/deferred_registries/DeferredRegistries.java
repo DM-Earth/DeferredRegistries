@@ -7,21 +7,38 @@ import java.util.function.Supplier;
 
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import org.jetbrains.annotations.Nullable;
 
 public class DeferredRegistries<T> {
-    private final Registry<? super T> registry;
+    private Registry<? super T> registry;
+    private RegistryKey<Registry<? super T>> registryKey;
     private final String modId;
     private final List<DeferredObject<T>> entries;
 
-    private DeferredRegistries(Registry<? super T> registry, String modId) {
-        this.registry = registry;
+    public DeferredRegistries(String modId) {
         this.modId = modId;
         this.entries = new ArrayList<>();
+        this.registryKey = null;
+        this.registry = null;
+    }
+
+    public DeferredRegistries<T> registry(Registry<? super T> registry) {
+        this.registry = registry;
+        return this;
+    }
+
+    public DeferredRegistries<T> registryKey(RegistryKey<Registry<? super T>> registryKey) {
+        this.registryKey = registryKey;
+        return this;
     }
 
     public static <T> DeferredRegistries<T> create(Registry<? super T> registry, String modId) {
-        return new DeferredRegistries<T>(registry, modId);
+        return new DeferredRegistries<T>(modId).registry(registry);
+    }
+
+    public static <T> DeferredRegistries<T> create(RegistryKey<Registry<? super T>> registryKey, String modId) {
+        return new DeferredRegistries<T>(modId).registryKey(registryKey);
     }
 
     public DeferredObject<T> register(String name, T entry) {
@@ -37,7 +54,11 @@ public class DeferredRegistries<T> {
 
     public void register() {
         for (DeferredObject<T> entry : entries) {
-            entry.register(this.registry);
+            if (this.registry != null) {
+                entry.register(this.registry);
+            } else if (this.registryKey != null) {
+                entry.register(this.registryKey);
+            }
         }
     }
 
