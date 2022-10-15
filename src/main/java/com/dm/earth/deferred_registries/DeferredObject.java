@@ -39,10 +39,10 @@ public class DeferredObject<T> {
     }
 
     public static <T> DeferredObject<T> of(Identifier id, T entry) {
-        return new DeferredObject<T>(id, entry);
+        return new DeferredObject<>(id, entry);
     }
 
     public static <T> DeferredObject<T> of(Identifier id, Supplier<T> entry) {
-        return new DeferredObject<T>(id, entry);
+        return new DeferredObject<>(id, entry);
     }
 }

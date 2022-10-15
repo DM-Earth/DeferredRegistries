@@ -43,7 +43,7 @@ public class DeferredRegistries<T> {
 
     public DeferredObject<T> register(String name, T entry) {
         if (this.getKey(entry) != null) throw new IllegalArgumentException("Entry already exists: " + entry.toString());
-        DeferredObject<T> e = new DeferredObject<T>(new Identifier(this.modId, name), entry);
+        DeferredObject<T> e = new DeferredObject<>(new Identifier(this.modId, name), entry);
         this.entries.add(e);
         return e;
     }
